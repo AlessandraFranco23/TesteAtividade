@@ -1,0 +1,15 @@
+C:\Users\Alessandra\Documents\teste\TesteAtividade\bin\Debug\net7.0\TesteAtividade.exe
+C:\Users\Alessandra\Documents\teste\TesteAtividade\bin\Debug\net7.0\TesteAtividade.deps.json
+C:\Users\Alessandra\Documents\teste\TesteAtividade\bin\Debug\net7.0\TesteAtividade.runtimeconfig.json
+C:\Users\Alessandra\Documents\teste\TesteAtividade\bin\Debug\net7.0\TesteAtividade.dll
+C:\Users\Alessandra\Documents\teste\TesteAtividade\bin\Debug\net7.0\TesteAtividade.pdb
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.csproj.AssemblyReference.cache
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.AssemblyInfoInputs.cache
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.AssemblyInfo.cs
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.csproj.CoreCompileInputs.cache
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.dll
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\refint\TesteAtividade.dll
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.pdb
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\TesteAtividade.genruntimeconfig.cache
+C:\Users\Alessandra\Documents\teste\TesteAtividade\obj\Debug\net7.0\ref\TesteAtividade.dll
