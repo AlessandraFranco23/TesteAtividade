@@ -1,4 +1,5 @@
-﻿using Views;
+﻿using Models;
+using Views;
 namespace Atividade
 {
     public class Program
@@ -6,7 +7,7 @@ namespace Atividade
 
         public static void Main(string[] args)
         {
-            Menu.Show();
+            Menu.Show();    
         }
     }
 }

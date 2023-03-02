@@ -4,16 +4,17 @@ namespace Views
     {
         public static void Show()
         {
-            Models.Dao.Cidade cidadeDao = new Models.Dao.Cidade();
-            Controllers.Cidade controllerCidade = new Controllers.Cidade(cidadeDao);
-            Cidade cidade = new Cidade(controllerCidade);
-
-            Models.Dao.Caminhao caminhaoDao = new Models.Dao.Caminhao();
-            Controllers.Caminhao controllerCaminhao = new Controllers.Caminhao(caminhaoDao);
-            Caminhao caminhao = new Caminhao(controllerCaminhao);
-
+            
             Models.Dao.Rota rotaDao = new Models.Dao.Rota();
+            Models.Dao.Cidade cidadeDao = new Models.Dao.Cidade();
+            Models.Dao.Caminhao caminhaoDao = new Models.Dao.Caminhao();
+
+            Controllers.Cidade controllerCidade = new Controllers.Cidade(cidadeDao);
+            Controllers.Caminhao controllerCaminhao = new Controllers.Caminhao(caminhaoDao, rotaDao);
             Controllers.Rota controllerRota = new Controllers.Rota(cidadeDao, caminhaoDao, rotaDao);
+
+            Cidade cidade = new Cidade(controllerCidade);
+            Caminhao caminhao = new Caminhao(controllerCaminhao);
             Rota rota = new Rota(controllerRota);
 
             int opt = 0;
