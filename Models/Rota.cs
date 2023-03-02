@@ -8,6 +8,8 @@ namespace Models
         public Cidade Chegada { get; set; }
         public DateTime Data { get; set; }
 
+        public double Frete { get; set; }
+
         public Rota(RotaBuilder builder)
         {
             Id = 0;
@@ -15,6 +17,7 @@ namespace Models
             Partida = builder.Partida;
             Chegada = builder.Chegada;
             Data = builder.Data;
+            Frete = builder.Frete;
         }
 
         public static RotaBuilder Builder()
@@ -30,6 +33,7 @@ namespace Models
                 Partida = form.Partida;
                 Chegada = form.Chegada;
                 Data = form.Data;
+                Frete = form.Frete;
             });
         }
     }
@@ -40,17 +44,26 @@ namespace Models
         public RotaProps SaindoDe(Cidade partida);
         public RotaProps ChegandoEm(Cidade chegada);
         public RotaProps Quando(DateTime data);
+        public RotaProps ComFreteDe(double frete);
+    }
+
+    public interface RotaPropsUpdate : RotaProps
+    {
         public void Update();
+    }
+
+    public interface RotaPropsBuild : RotaProps
+    {
         public Rota Build();
     }
 
-    public class RotaForm : RotaProps
+    public class RotaForm : RotaPropsUpdate
     {
         public Caminhao Caminhao { get; set; }
         public Cidade Partida { get; set; }
         public Cidade Chegada { get; set; }
         public DateTime Data { get; set; }
-
+        public double Frete { get; set; }
         public Action<RotaForm> Action;
 
         public RotaForm(Action<RotaForm> action)
@@ -76,6 +89,14 @@ namespace Models
             return this;
         }
 
+
+        public RotaProps ComFreteDe(double frete)
+        {
+            Frete = frete;
+            return this;
+        }
+
+
         public RotaProps Quando(DateTime data)
         {
             Data = data;
@@ -86,20 +107,17 @@ namespace Models
         {
             Action.Invoke(this);
         }
-
-        public Rota Build()
-        {
-            throw new NotImplementedException();
-        }
     }
 
     //Classe construtora (Builder Pattern)
-    public class RotaBuilder: RotaProps
+    public class RotaBuilder : RotaPropsBuild
     {
         public Caminhao Caminhao { get; set; }
         public Cidade Partida { get; set; }
         public Cidade Chegada { get; set; }
         public DateTime Data { get; set; }
+
+        public double Frete { get; set; }
 
         public RotaProps ComCaminhao(Caminhao caminhao)
         {
@@ -119,6 +137,12 @@ namespace Models
             return this;
         }
 
+        public RotaProps ComFreteDe(double frete)
+        {
+            Frete = frete;
+            return this;
+        }
+
         public RotaProps Quando(DateTime data)
         {
             Data = data;
@@ -128,11 +152,6 @@ namespace Models
         public Rota Build()
         {
             return new Rota(this);
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
         }
     }
 }

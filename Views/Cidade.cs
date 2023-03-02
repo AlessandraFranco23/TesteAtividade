@@ -35,7 +35,7 @@ namespace Views
                         break;
                     case 2:
                         Console.WriteLine("Insira o id da cidade");
-                        int id = Int32.Parse(Console.ReadLine());
+                        string id = Console.ReadLine();
                         
                         Console.WriteLine("Insira o novo nome da cidade");
                         nome = Console.ReadLine();
@@ -44,7 +44,7 @@ namespace Views
                         break;
                     case 3:
                         Console.WriteLine("Insira o id da cidade");
-                        id = Int32.Parse(Console.ReadLine());
+                        id = Console.ReadLine();
                         controller.Remover(id);
                         
                         break;

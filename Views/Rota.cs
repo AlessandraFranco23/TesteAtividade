@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Views
 {
 
@@ -20,6 +22,7 @@ namespace Views
                 Console.WriteLine("2 - Atualizar");
                 Console.WriteLine("3 - Remover");
                 Console.WriteLine("4 - Ver todos");
+                Console.WriteLine("5 - Ver media de frete");
                 Console.WriteLine("0 - Voltar ao Menu Principal");
                 Console.WriteLine("Informe a opção desejada:");
                 opt = int.Parse(Console.ReadLine());
@@ -31,54 +34,68 @@ namespace Views
                         controller.Novo();
 
                         Console.WriteLine("Insira o id do caminhão");
-                        int idCaminhao = Int32.Parse(Console.ReadLine());
+                        string idCaminhao = Console.ReadLine();
                         controller.SetCaminhao(idCaminhao);
 
                         Console.WriteLine("Insira o id da cidade de partida");
-                        int idPartida = Int32.Parse(Console.ReadLine());
+                        string idPartida = Console.ReadLine();
                         controller.SetPartida(idPartida);
 
                         Console.WriteLine("Insira o id da cidade de chegada");
-                        int idChegada = Int32.Parse(Console.ReadLine());
+                       string idChegada = Console.ReadLine();
                         controller.SetChegada(idChegada);
 
                         Console.WriteLine("Insira o dia da rota");
                         string data = Console.ReadLine();
                         controller.Quando(data);
 
+                        Console.WriteLine("Insira o valor do frete");
+                        double frete = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        controller.ComFreteDe(frete);
+
                         controller.Inserir();
                         break;
                     case 2:
                         Console.WriteLine("Insira o id da rota");
-                        int id = Int32.Parse(Console.ReadLine());
+                        string id = Console.ReadLine();
                         controller.Atualizar(id);
 
                         Console.WriteLine("Insira o id do caminhão");
-                        idCaminhao = Int32.Parse(Console.ReadLine());
+                        idCaminhao = Console.ReadLine();
                         controller.SetCaminhao(idCaminhao);
 
                         Console.WriteLine("Insira o id da cidade de partida");
-                        idPartida = Int32.Parse(Console.ReadLine());
+                        idPartida = Console.ReadLine();
                         controller.SetPartida(idPartida);
 
                         Console.WriteLine("Insira o id da cidade de chegada");
-                        idChegada = Int32.Parse(Console.ReadLine());
+                        idChegada = Console.ReadLine();
                         controller.SetChegada(idChegada);
 
                         Console.WriteLine("Insira o dia da rota");
                         data = Console.ReadLine();
                         controller.Quando(data);
 
+                        Console.WriteLine("Insira o valor do frete");
+                        frete = Convert.ToDouble(Console.ReadLine(), CultureInfo.InvariantCulture);
+                        controller.ComFreteDe(frete);
+
                         controller.Update();
                         break;
                     case 3:
                         Console.WriteLine("Insira o id da rota");
-                        id = Int32.Parse(Console.ReadLine());
+                        id = Console.ReadLine();
                         controller.Remover(id);
 
                         break;
                     case 4:
-                        controller.FindAll().Select(rota => $"{rota.Id} - {rota.Caminhao.Placa.valor} - {rota.Partida.Nome.Valor} - {rota.Chegada.Nome.Valor} - {rota.Data}").ToList().ForEach(cidade => Console.WriteLine(cidade));
+                        controller.FindAll()
+                                  .Select(rota => $"{rota.Id} - {rota.Caminhao.Placa.valor} - {rota.Partida.Nome.Valor} - {rota.Chegada.Nome.Valor} - {rota.Data} - {rota.Frete.ToString("F2", CultureInfo.InvariantCulture)}")
+                                  .ToList()
+                                  .ForEach(cidade => Console.WriteLine(cidade));
+                        break;
+                    case 5:
+                        Console.WriteLine(controller.MediaDeFrete().ToString("F2", CultureInfo.InvariantCulture));
                         break;
                     default:
                         Console.WriteLine("Opção inválida");

@@ -17,15 +17,17 @@ namespace Controllers
             dao.Insert(cidade);
         }
 
-        public void Atualizar(int id, string nome) {
+        public void Atualizar(string id, string nome) 
+        {
+            
             Nome nomeCidade = new Nome(nome);
-            Models.Cidade cidade = dao.GetById(id);
+            Models.Cidade cidade = dao.GetById(IdConvert.Convert(id));
             cidade.Nome = nomeCidade;
             dao.Update(cidade);
         }
 
-        public void Remover(int id) {
-            dao.Delete(id);
+        public void Remover(string id) {
+            dao.Delete(IdConvert.Convert(id));
         }
 
         public IList<Models.Cidade> FindAll() {

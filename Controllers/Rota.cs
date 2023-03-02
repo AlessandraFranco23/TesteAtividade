@@ -23,30 +23,34 @@ namespace Controllers
             Form = Models.Rota.Builder();
         }
 
-        public void Atualizar(int id)
+        public void Atualizar(string id)
         {
-            Model = dao.GetById(id);
+            Model = dao.GetById(IdConvert.Convert(id));
             Form = Model.Update();
         }
 
-        public void SetCaminhao(int idCaminhao)
+        public void SetCaminhao(string idCaminhao)
         {
-            Models.Caminhao caminhao = daoCaminhao.GetById(idCaminhao);
+            Models.Caminhao caminhao = daoCaminhao.GetById(IdConvert.Convert(idCaminhao));
             Form.ComCaminhao(caminhao);
         }
 
-        public void SetPartida(int idCidade)
+        public void SetPartida(string idCidade)
         {
-            Models.Cidade cidade = daoCidade.GetById(idCidade);
+            Models.Cidade cidade = daoCidade.GetById(IdConvert.Convert(idCidade));
             Form.SaindoDe(cidade);
         }
 
-        public void SetChegada(int idCidade)
+        public void SetChegada(string idCidade)
         {
-            Models.Cidade cidade = daoCidade.GetById(idCidade);
+            Models.Cidade cidade = daoCidade.GetById(IdConvert.Convert(idCidade));
             Form.ChegandoEm(cidade);
         }
 
+        public void ComFreteDe(double frete)
+        {
+            Form.ComFreteDe(frete);
+        }
         public void Quando(string data)
         {
             Form.Quando(Convert.ToDateTime(data));
@@ -54,21 +58,35 @@ namespace Controllers
 
         public void Inserir()
         {
-            Models.Rota rota = Form.Build();
+            Models.Rota rota = ((RotaPropsBuild)Form).Build();
             dao.Insert(rota);
         }
 
-        public void Update() {
-            Form.Update();
+        public void Update()
+        {
+            ((RotaPropsUpdate)Form).Update();
             dao.Update(Model);
         }
 
-         public void Remover(int id) {
-            dao.Delete(id);
+        public void Remover(string id)
+        {
+            dao.Delete(IdConvert.Convert(id));
         }
 
-        public IList<Models.Rota> FindAll() {
+        public IList<Models.Rota> FindAll()
+        {
             return dao.GetAll();
         }
+
+        
+        public double MediaDeFrete()
+        {
+            double totalFrete = dao.GetAll()
+                   .Select(rota => rota.Frete)
+                   .Average();
+            return totalFrete;
+        }
+
+        
     }
 }

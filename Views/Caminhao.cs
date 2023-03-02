@@ -20,6 +20,8 @@ namespace Views
                 Console.WriteLine("2 - Atualizar");
                 Console.WriteLine("3 - Remover");
                 Console.WriteLine("4 - Ver todos");
+                Console.WriteLine("5 - Total dos Fretes");
+                Console.WriteLine("6 - Total das Rotas");
                 Console.WriteLine("0 - Voltar ao Menu Principal");
                 Console.WriteLine("Informe a opção desejada:");
                 opt = int.Parse(Console.ReadLine());
@@ -38,7 +40,7 @@ namespace Views
                         break;
                     case 2:
                         Console.WriteLine("Insira o id do caminhão");
-                        int id = Int32.Parse(Console.ReadLine());
+                        string id = Console.ReadLine();
 
                         Console.WriteLine("Insira o novo motorista");
                         motorista = Console.ReadLine();
@@ -47,12 +49,27 @@ namespace Views
                         break;
                     case 3:
                         Console.WriteLine("Insira o id do caminhao");
-                        id = Int32.Parse(Console.ReadLine());
+                        id = Console.ReadLine();
                         controller.Remover(id);
 
                         break;
                     case 4:
-                        controller.FindAll().Select(caminhao => $"{caminhao.Id} - {caminhao.Placa.valor} - {caminhao.Motorista.Nome}").ToList().ForEach(caminhao => Console.WriteLine(caminhao));
+                        controller.FindAll()
+                            .Select(caminhao => $"{caminhao.Id} - {caminhao.Placa.valor} - {caminhao.Motorista.Nome}")
+                            .ToList()
+                            .ForEach(caminhao => Console.WriteLine(caminhao));
+                        break;
+                    case 5:
+                        controller.FindAll()
+                            .Select(caminhao => $"{caminhao.Id} - {controller.TotalDeFrete(caminhao.Id)}")
+                            .ToList()
+                            .ForEach(caminhao => Console.WriteLine(caminhao));
+                        break;
+                    case 6:
+                        controller.FindAll()
+                            .Select(caminhao => $"{caminhao.Id} - {controller.TotalDeRotas(caminhao.Id)}")
+                            .ToList()
+                            .ForEach(caminhao => Console.WriteLine(caminhao));
                         break;
                     default:
                         Console.WriteLine("Opção inválida");
