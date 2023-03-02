@@ -27,15 +27,16 @@ namespace Models
 
     public class Motorista
     {
-        public string Nome {get; set;}
-        public Motorista (string nome) {
+        public string Nome { get; set; }
+        public Motorista(string nome)
+        {
             Nome = nome;
         }
 
         // override object.Equals
         public override bool Equals(object obj)
         {
-            return Nome == ((Motorista) obj).Nome;
+            return Nome == ((Motorista)obj).Nome;
         }
     }
 
@@ -46,7 +47,7 @@ namespace Models
 
         public Placa(string valor)
         {
-            //regra validar placa
+            ValidaPlaca(valor);
             this.valor = valor;
         }
 
@@ -56,5 +57,31 @@ namespace Models
             return valor == ((Placa)obj).valor;
         }
 
+        private void ValidaPlaca(string placa)
+        {
+            string[] placaSplit = placa.Split('-');
+            if (placaSplit.Length != 2 &&
+                placaSplit[0].Length != 3 &&
+                placaSplit[1].Length != 4)
+            {
+                throw new PlacaInvalida();
+            }
+
+            string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string numeros = "0123456789";
+
+            if (placaSplit[0].Except(letras).Any() &&
+                placaSplit[1].Except(numeros).Any())
+            {
+                throw new PlacaInvalida();
+            }
+        }
+    }
+
+    public class PlacaInvalida : Exception
+    {
+        public PlacaInvalida() : base("Placa inválida")
+        {
+        }
     }
 }
