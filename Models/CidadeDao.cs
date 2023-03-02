@@ -23,7 +23,11 @@ namespace Models.Dao
 
         public Models.Cidade GetById(int id)
         {
-            return cidades.Where(cidade => cidade.Id == id).First();
+             Models.Cidade cidade = cidades.Where(caminhao => caminhao.Id == id).First();
+            if (cidade == null) {
+                throw new Exception("Cidade não encontrado");
+            } 
+            return cidade;
         }
 
         public IList<Models.Cidade> GetAll()

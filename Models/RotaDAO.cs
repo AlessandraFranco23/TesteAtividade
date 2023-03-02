@@ -23,7 +23,11 @@ namespace Models.Dao
 
         public Models.Rota GetById(int id)
         {
-            return rotas.Where(rota => rota.Id == id).First();
+            Models.Rota rota = rotas.Where(rota => rota.Id == id).First();
+            if (rota == null) {
+                throw new Exception("Rota não encontrado");
+            } 
+            return rota;
         }
 
         public IList<Models.Rota> GetAll()

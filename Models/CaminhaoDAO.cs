@@ -23,7 +23,12 @@ namespace Models.Dao
 
         public Models.Caminhao GetById(int id)
         {
-            return caminhoes.Where(caminhao => caminhao.Id == id).First();
+            Models.Caminhao caminhao = caminhoes.Where(caminhao => caminhao.Id == id).First();
+            if (caminhao == null) {
+                throw new Exception("Caminhão não encontrado");
+            } 
+            return caminhao;
+        
         }
 
         public IList<Models.Caminhao> GetAll()
